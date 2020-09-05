@@ -13,4 +13,20 @@ public class Exercise {
         this.isWeighted = isWeighted;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public long getMax() {
+        return max;
+    }
+
+    public boolean getIsWeighted() {
+        return isWeighted;
+    }
+
 }
