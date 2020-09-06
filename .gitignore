@@ -36,3 +36,4 @@ out/
 ### ENV ###
 *.env
 **/application.properties
+bin
