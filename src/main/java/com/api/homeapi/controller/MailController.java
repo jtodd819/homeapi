@@ -1,15 +1,20 @@
 package com.api.homeapi.controller;
 import com.api.homeapi.model.Mail;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
+@RequestMapping(path="/mail")
 public class MailController {
 
-    @GetMapping("/mail")
-    public Mail mail(@RequestParam(value="to") String to, @RequestParam(value= "from") String from,
-    @RequestParam(value="subject") String subject, @RequestParam(value="body") String body) {
-        return new Mail(to, from, subject, body);
+    @PostMapping()
+    public ResponseEntity<Void> sendMail(@RequestBody Mail mail) {
+        // Send Mail
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
+
 }

@@ -1,24 +1,34 @@
 package com.api.homeapi.model;
 
-public class Exercise {
-    private final long id;
-    private final long userId;
-    private String name;
-    private long max;
-    private boolean isWeighted;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-    public Exercise(long id, long userId, String name, long max, boolean isWeighted) {
-        this.id = id;
-        this.userId = userId;
-        this.name = name;
-        this.max = max;
-        this.isWeighted = isWeighted;
-    }
+@Entity
+@Table(name="exercise")
+public class Exercise {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @Column(name="user_id")
+    private long userId;
+
+    private String name;
+
+    private long max;
+    
+    @Column(name="is_weighted")
+    private boolean isWeighted;
 
     public long getId() {
         return id;
     }
-
+    
     public long getUserId() {
         return userId;
     }
@@ -33,6 +43,18 @@ public class Exercise {
 
     public boolean getIsWeighted() {
         return isWeighted;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMax(long max) {
+        this.max = max;
+    }
+
+    public void setIsWeighted(boolean isWeighted) {
+        this.isWeighted = isWeighted;
     }
 
 }
