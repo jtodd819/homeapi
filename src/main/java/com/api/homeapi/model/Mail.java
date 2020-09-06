@@ -1,4 +1,4 @@
-package com.api.homeapi;
+package com.api.homeapi.model;
 
 public class Mail {
     private String from;
