@@ -36,7 +36,7 @@ public class UserController {
     public ResponseEntity<Void> updateUser(@PathVariable Long userId, @RequestBody User user) throws ResponseStatusException {
         User currentUser = userRepository.findById(userId).orElseThrow(() -> 
         new ResponseStatusException(HttpStatus.NOT_FOUND, "User Not Found:: " + userId));
-        currentUser.setUserName(user.getUserName());
+        currentUser.setEmailAdress(user.getEmailAddress());
         currentUser.setPassword(user.getPassword());
         userRepository.save(user);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

@@ -9,16 +9,16 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ColumnTransformer;
 
 @Entity
-@Table(name="user")
+@Table(name="user_account")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ColumnTransformer(forColumn = "user_name", read="pgp_sym_decrypt(age, 'password)", write="pgp_sym_encrypt(?, 'password')")
-    @Column(name = "user_name", columnDefinition = "bytea")
-    private String userName;
+    @ColumnTransformer(forColumn = "email_address", read="pgp_sym_decrypt(age, 'password)", write="pgp_sym_encrypt(?, 'password')")
+    @Column(name = "email_address", columnDefinition = "bytea")
+    private String emailAddress;
 
     @ColumnTransformer(forColumn = "password", read="pgp_sym_decrypt(age, 'password)", write="pgp_sym_encrypt(?, 'password')")
     @Column(name = "password", columnDefinition = "bytea")
@@ -28,16 +28,16 @@ public class User {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmailAdress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public void setPassword(String password) {
