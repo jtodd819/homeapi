@@ -37,3 +37,4 @@ out/
 *.env
 **/application.properties
 bin
+src/main/java/com/api/homeapi/security/Config.java

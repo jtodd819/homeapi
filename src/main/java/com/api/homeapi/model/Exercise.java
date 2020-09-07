@@ -1,28 +1,22 @@
 package com.api.homeapi.model;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="exercise")
 public class Exercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name="user_id")
     private long userId;
 
     private String name;
 
     private long max;
     
-    @Column(name="is_weighted")
     private boolean isWeighted;
 
     public long getId() {

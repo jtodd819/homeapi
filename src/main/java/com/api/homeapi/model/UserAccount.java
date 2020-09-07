@@ -1,31 +1,37 @@
 package com.api.homeapi.model;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import org.hibernate.annotations.ColumnTransformer;
+import javax.validation.constraints.Email;
+import org.springframework.lang.NonNull;
 
 @Entity
-@Table(name="user_account")
-public class User {
-
+@Table
+public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ColumnTransformer(forColumn = "email_address", read="pgp_sym_decrypt(email_address, 'pw')", write="pgp_sym_encrypt(?, 'pw')")
-    @Column(name = "email_address", columnDefinition = "bytea")
+    @NonNull
+    @Column(unique = true)
+    private String userName;
+
+    @Email
+    @Column(unique = true)
     private String emailAddress;
 
-    @ColumnTransformer(forColumn = "password", read="pgp_sym_decrypt(password, 'pw')", write="pgp_sym_encrypt(?, 'pw')")
-    @Column(name = "password", columnDefinition = "bytea")
+    @NonNull
     private String password;
 
     public long getId() {
         return id;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public String getEmailAddress() {
@@ -36,7 +42,11 @@ public class User {
         return password;
     }
 
-    public void setEmailAdress(String emailAddress) {
+    public void getUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
