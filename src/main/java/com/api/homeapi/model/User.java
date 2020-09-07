@@ -16,11 +16,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ColumnTransformer(forColumn = "email_address", read="pgp_sym_decrypt(age, 'password)", write="pgp_sym_encrypt(?, 'password')")
+    @ColumnTransformer(forColumn = "email_address", read="pgp_sym_decrypt(email_address, 'pw')", write="pgp_sym_encrypt(?, 'pw')")
     @Column(name = "email_address", columnDefinition = "bytea")
     private String emailAddress;
 
-    @ColumnTransformer(forColumn = "password", read="pgp_sym_decrypt(age, 'password)", write="pgp_sym_encrypt(?, 'password')")
+    @ColumnTransformer(forColumn = "password", read="pgp_sym_decrypt(password, 'pw')", write="pgp_sym_encrypt(?, 'pw')")
     @Column(name = "password", columnDefinition = "bytea")
     private String password;
 
