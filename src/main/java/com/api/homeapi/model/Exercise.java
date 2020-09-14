@@ -11,7 +11,7 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private long userId;
+    private String userName;
 
     private String name;
 
@@ -23,8 +23,8 @@ public class Exercise {
         return id;
     }
     
-    public long getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 
     public String getName() {

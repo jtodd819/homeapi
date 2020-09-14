@@ -29,8 +29,8 @@ public class ExerciseController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Exercise>> getExercisesByUserId(@RequestParam(value="userId") Long userId) {
-        List<Exercise> exercises = exerciseRepository.findByUserId(userId);
+    public ResponseEntity<List<Exercise>> getExercisesByUserName(@RequestParam(value="userName") String userName) {
+        List<Exercise> exercises = exerciseRepository.findByUserName(userName);
         return new ResponseEntity<List<Exercise>>(exercises, HttpStatus.OK);
     }
 

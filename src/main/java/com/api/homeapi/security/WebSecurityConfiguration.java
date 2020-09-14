@@ -1,6 +1,5 @@
 package com.api.homeapi.security;
 import com.api.homeapi.security.services.UserDetailsServiceImpl;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -49,7 +48,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**",new CorsConfiguration().applyPermitDefaultValues());
+        CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        config.addAllowedOrigin("*");
+        config.setMaxAge(1800L);
+        source.registerCorsConfiguration("/**", config);
         return source;
     }
 }

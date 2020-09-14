@@ -4,5 +4,5 @@ import com.api.homeapi.model.Exercise;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ExerciseRepository extends CrudRepository<Exercise, Long>{
-    List<Exercise> findByUserId(long userId);
+    List<Exercise> findByUserName(String userName);
 }
