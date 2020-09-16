@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -43,6 +44,15 @@ public class UserAccountController {
         currentUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userAccountRepository.save(user);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(value="/{userName}")
+    public ResponseEntity<UserAccount> getUserByUserName(@PathVariable String userName) throws ResponseStatusException {
+        UserAccount user = userAccountRepository.findByUserName(userName);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User Not Found with User Name:: " + userName);
+        }
+        return new ResponseEntity<UserAccount>(user, HttpStatus.OK);
     }
     
     @DeleteMapping(value="/{userId}")
