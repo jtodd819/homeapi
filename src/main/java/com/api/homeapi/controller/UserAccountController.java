@@ -40,9 +40,13 @@ public class UserAccountController {
     public ResponseEntity<Void> updateUser(@PathVariable Long userId, @RequestBody UserAccount user) throws ResponseStatusException {
         UserAccount currentUser = userAccountRepository.findById(userId).orElseThrow(() -> 
         new ResponseStatusException(HttpStatus.NOT_FOUND, "User Not Found:: " + userId));
-        currentUser.setEmailAddress(user.getEmailAddress());
-        currentUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userAccountRepository.save(user);
+        if (user.getEmailAddress() != null) {
+            currentUser.setEmailAddress(user.getEmailAddress());
+        }
+        if (user.getPassword() != null) {
+            currentUser.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        }
+        userAccountRepository.save(currentUser);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
