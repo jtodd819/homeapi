@@ -24,7 +24,7 @@ public class MailController {
         // Send Mail
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(mail.getFrom());
-        message.setTo(System.getenv("EMAIL_ADDRESS"));
+        message.setTo(System.getenv("TO_EMAIL_ADDRESS"));
         message.setSubject("Home Site Notification from " + mail.getFrom());
         message.setText(mail.getSubject() + ":\n" + mail.getBody());
         emailSender.send(message);
