@@ -1,1 +1,41 @@
 Spring Boot Resful API on top of PostgreSQL Database for [HomeSite](https://github.com/jtodd819/homesite)
+
+Running (MacOS):
+- Install [homebrew](https://brew.sh)
+- Download VS Code IDE
+  - `brew install --cask visual-studio-code`
+- Install JDK11
+  - `brew install java11`
+- In VS Code
+  - Install extensions by searching ids
+    - Gradle for Java: vscjava.vscode-gradle
+    - Language support for Java: redhat.java
+  - Set Java home for Gradle for Java extension in `settings.json`
+     "java.jdt.ls.java.home": "/opt/homebrew/opt/openjdk@11"
+- Install postgresql
+  - `brew install postgresql`
+- Start postgresql service
+  - `brew services start postgresql`
+- Create postgres role
+  - `/opt/homebrew/Cellar/postgresql/14.2_1/bin/createuser -s postgres`
+- Install pgAdmin4 for postgresql GUI management
+  - `brew install --cask pgadmin4`
+- In pgAdmin program
+  - Add new server configuration
+    - Name: Local
+    - Host name: localhost
+    - Port: 5432
+    - Username: postgres
+  - Under Login/Group Roles, register new role
+    - Name: api
+    - Privileges
+      - Can login
+      - Superuser
+      - Create roles
+      - Create databases
+  - Under Database create new one
+    - Name: home
+- Run in VSCode
+  - Select Gradle tab on left hand side
+  - Click on Tasks > application
+  - Click the play button on the bootRun configuration
